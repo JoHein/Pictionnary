@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8 />
+    <title>Pictionnary - Inscription</title>
+    <link rel="stylesheet" media="screen" href="/css/styles.css" >
+    <link rel="stylesheet" media="screen" href="/css/bootstrap.css" >
+
+</head>
+    <% include headerADM %>
+<section class="container">
+
+    <h3>Dashboard</h3>
+    <% for(var i=0; i<user.length; i++) {%>
+    <table>
+        <tr>
+            <td><%= user[i]['email'] %></td>
+            <td><a href="/modificationadm?iduser=<%= user[i]['id'] %>">User<%= [i] %></a></td>
+            <td>
+                <form action="/supressionadm" method="POST" name="supressionadm" style="display: inline;">
+                    <input type="hidden" id="iduser" name="iduser" value="<%= user[i]['id'] %>">
+                    <input type="submit" onclick="return confirmDelete()" id="supression" value="Suppression">
+                </form>
+            </td>
+        </tr>
+
+    <% } %>
+    </table>
+
+</section>
+</body>
+<script>
+    function confirmDelete(){
+        var agree = confirm("Êtes vous sur de vouloir supprimer le profil?");
+        if(agree == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+</script>
+</html>
